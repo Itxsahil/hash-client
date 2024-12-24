@@ -65,7 +65,6 @@ const YourPage: React.FC = () => {
       <RichEditor
         onChange={handleEditorChange}
         initialContent={editorContent}
-        type_={editorContent ? "old" : "new"}
       />
     </div>
   );

@@ -15,15 +15,15 @@ import URI from "@/conf";
 type TextEditorProps = {
   onChange: (content: string) => void;
   initialContent?: string | null;
-  type_: string;
+  // type_: string;
 };
 
 export default function RichTextEditor({
   onChange,
   initialContent,
-  type_,
+  // type_,
 }: TextEditorProps) {
-  const [editorContent, setEditorContent] = useState<string | null | undefined>(initialContent);
+  const [editorContent] = useState<string | null | undefined>(initialContent);
 
   const { key } = useKey();
   const { theme } = useTheme();
