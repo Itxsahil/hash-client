@@ -16,7 +16,7 @@ const KeyForm: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center gap-6 max-w-[400px] border border-gray-200 rounded-lg h-[400px] w-full shadow-lg p-6">
       <h1 className="text-2xl font-bold">Enter your key</h1>
-      <p className="text-center text-sm text-gray-600 leading-relaxed">
+      <p className="text-center text-sm leading-relaxed">
         Please don't lose your key. There is no way to recover your data if you
         lose your key.
       </p>
@@ -35,7 +35,7 @@ const KeyForm: React.FC = () => {
             onChange={() => setShowKey((prev) => !prev)}
             className="h-4 w-4"
           />
-          <span className="text-sm text-gray-600">Show key</span>
+          <span className="text-sm">Show key</span>
         </div>
         <Button
           onClick={handleSubmitKey}

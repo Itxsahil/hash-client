@@ -7,7 +7,7 @@ import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import {  encryptNote } from "@/process/hash";
+import { encryptNote } from "@/process/hash";
 import { useKey } from "@/process/KeyProvider";
 import { useState } from "react";
 import URI from "@/conf";
@@ -15,13 +15,11 @@ import URI from "@/conf";
 type TextEditorProps = {
   onChange: (content: string) => void;
   initialContent?: string | null;
-  // type_: string;
 };
 
 export default function RichTextEditor({
   onChange,
   initialContent,
-  // type_,
 }: TextEditorProps) {
   const [editorContent] = useState<string | null | undefined>(initialContent);
 
@@ -29,8 +27,6 @@ export default function RichTextEditor({
   const { theme } = useTheme();
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-
-
 
   const editor = useEditor({
     extensions: [StarterKit, Underline],
@@ -62,7 +58,7 @@ export default function RichTextEditor({
       if (data.status === "success") {
         toast.success(data.message);
       } else {
-        toast.error("Something went wrong please try again");
+        toast.error("Something went wrong, please try again");
       }
     }
   };
@@ -107,15 +103,16 @@ export default function RichTextEditor({
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="flex flex-col gap-2 items-center h-full w-[95vh]">
-        <div className="flex flex-row gap-2">
+    <div className="flex justify-center items-center min-h-screen p-4">
+      <div className="flex flex-col gap-4 items-center w-full lg:w-[95vh]">
+        {/* Toolbar Section */}
+        <div className="flex flex-wrap gap-2 items-center justify-between w-full">
           <div
             className={`flex flex-col gap-2 items-center ${
               theme === "dark"
                 ? "border border-gray-200"
                 : "border border-gray-900"
-            }`}
+            } p-2 rounded-md`}
           >
             <TextEditorMenuBar editor={editor} />
           </div>
@@ -134,14 +131,18 @@ export default function RichTextEditor({
             </Button>
           </div>
         </div>
+        {/* Editor Section */}
         <div
-          className={`w-full h-full ${
+          className={`w-full flex-grow ${
             theme === "dark"
               ? "border border-gray-200"
               : "border border-gray-900"
-          }`}
+          } rounded-md overflow-hidden`}
         >
-          <EditorContent editor={editor} className="h-full w-full" />
+          <EditorContent
+            editor={editor}
+            className="h-full w-full min-h-[50vh] sm:min-h-[70vh] p-4"
+          />
         </div>
       </div>
     </div>
